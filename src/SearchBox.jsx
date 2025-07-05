@@ -9,8 +9,10 @@ const SearchBox = ({updateInfo}) => {
     const apiKey = import.meta.env.VITE_API_KEY  
       
     let [city, setCity]= useState("");
+    let [err, setErr]= useState(false);
 
     let getWeatherInfo = async ()=>{
+      try{
         let response =await fetch(`${apiUrl}?q=${city}&appid=${apiKey}&units=metric`);
         let jsonResponse = await response.json();
         console.log(jsonResponse)
@@ -25,6 +27,9 @@ const SearchBox = ({updateInfo}) => {
         }
         console.log(result);
         return result;
+      }catch(err){
+        throw err.message;
+      }
     }
 
     let handleChange = (event)=>{
@@ -34,11 +39,16 @@ const SearchBox = ({updateInfo}) => {
     }
 
     let handleSubmit = async (event)=>{
+      try{
+
         event.preventDefault();
         console.log(city)
         setCity("");
-       let newInfo= await getWeatherInfo();
-       updateInfo(newInfo)
+        let newInfo= await getWeatherInfo();
+        updateInfo(newInfo)
+      }catch(err){
+        setErr(true)
+      }
     }
   return (
     <div className="searchbox">
@@ -47,7 +57,7 @@ const SearchBox = ({updateInfo}) => {
         <TextField id="outlined-basic" onChange={handleChange} value={city} label="City Name" variant="outlined" required />
         <br /><br />
         <Button  variant="contained"    type="submit">Search</Button>
-      
+      {err && <p style={{color:"red"}}>No such place in Our API</p> }
       </form>
     </div>
   );
