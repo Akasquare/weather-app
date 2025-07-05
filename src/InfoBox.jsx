@@ -9,7 +9,7 @@ import img from './assets/imgDusty.avif'
 import './InfoBox.css'
 
 const InfoBox = ({info}) => {
-console.log(info);
+// console.log(info);
   return (
     < > 
     <div className="InfoBox"> 
@@ -26,10 +26,10 @@ console.log(info);
         </Typography>
         <Typography variant="body2"  component="span"sx={{ color: 'text.secondary' }}>
            <p>Temperature = {info.temp}&deg;C</p>
-           <p>Humadity = {info.humadity}</p>
-           <p>Min Temp = {info.tempMin}</p>
-           <p>Min Temp = {info.tempMax}</p>
-           <p>The weather can be described as <i> {info.weather}</i> feels like {info.feelslike}&deg;C</p>
+           <p>Humidity = {info.humidity}</p>
+           <p>Min Temp = {info.minTemp}</p>
+           <p>Min Temp = {info.maxTemp}</p>
+           <p>The weather can be described as <i> {info.weather}</i> feels like {info.feelsLike}&deg;C</p>
         </Typography>
       </CardContent>
        

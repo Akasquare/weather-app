@@ -9,19 +9,19 @@ const WeatherApp = () => {
         temp: 25.05,
         tempMin: 25.05,
         tempMax: 25.05,
-        humadity:47,
+        humidity:47,
         weather:"haze",
     })
 
-    let updateInfo = (result)=>{
-        setWeatherInfo(result);
+    let updateInfo = (newInfo)=>{
+        setWeatherInfo(newInfo);
     }
     // console.log(weatherInfo);
   return (
     <div style={{textAlign: 'center'}} >
         
     <SearchBox updateInfo={updateInfo}/>
-        <InfoBox info={weatherInfo}/>
+    <InfoBox info={weatherInfo}/>
 
     </div>
   )

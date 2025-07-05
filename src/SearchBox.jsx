@@ -4,13 +4,13 @@ import Button from "@mui/material/Button";
 import "./SearchBox.css"
 
 
-const SearchBox = () => {
-    const apiUrl = process.env.API_URL  
-    const apiKey = process.env.API_KEY  
+const SearchBox = ({updateInfo}) => {
+    const apiUrl = import.meta.env.VITE_API_URL  
+    const apiKey = import.meta.env.VITE_API_KEY  
       
     let [city, setCity]= useState("");
 
-    let getWeatherInfo = async ({updateInfo})=>{
+    let getWeatherInfo = async ()=>{
         let response =await fetch(`${apiUrl}?q=${city}&appid=${apiKey}&units=metric`);
         let jsonResponse = await response.json();
         console.log(jsonResponse)
@@ -37,8 +37,8 @@ const SearchBox = () => {
         event.preventDefault();
         console.log(city)
         setCity("");
-       let info= await getWeatherInfo();
-       updateInfo(info)
+       let newInfo= await getWeatherInfo();
+       updateInfo(newInfo)
     }
   return (
     <div className="searchbox">
